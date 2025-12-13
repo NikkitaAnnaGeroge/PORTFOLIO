@@ -1,4 +1,4 @@
-# 🌙 Nikkita Anna George | Portfolio
+# Nikkita Anna George | Portfolio
 
 Hi there! 👋 I'm **Nikkita Anna George**, an aspiring **UI/UX Designer** & **Frontend Developer**.  
 This is my **dark-themed, responsive portfolio** showcasing my skills, education, projects, and ways to get in touch. 💻✨  
