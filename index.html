@@ -1,83 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nikkita Anna George | Portfolio</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
 <style>
-:root{
+:root {
   --bg:#0f172a;
   --card:#1e293b;
   --text:#e5e7eb;
   --accent:#38bdf8;
-  --h1:#a78bfa;
-  --h2:#22d3ee;
-  --h3:#a855f7;
+  --heading1:#a78bfa;
+  --heading2:#22d3ee;
+  --heading3:#a855f7;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
   min-height:100vh;
   display:flex;
   flex-direction:column;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
 }
+main{flex:1}
 nav{
   background:#020617;
-  padding:12px;
+  padding:10px 20px;
   display:flex;
   justify-content:center;
-  gap:25px;
   position:sticky;
   top:0;
   z-index:100;
 }
 nav a{
   color:var(--accent);
+  margin:0 15px;
+  text-decoration:none;
   font-weight:bold;
   cursor:pointer;
-  text-decoration:none;
 }
-nav a:hover{color:var(--h1)}
+nav a:hover{color:var(--heading1)}
 section{
   display:none;
-  max-width:1100px;
+  padding:60px 40px;
+  max-width:1000px;
   margin:auto;
-  padding:60px 25px;
   animation:fadeUp .5s ease;
 }
 section.active{display:block}
-h1{font-size:46px;color:var(--h1)}
-h2{font-size:28px;margin-bottom:15px}
-p{line-height:1.6;font-size:16px}
+h1{color:var(--heading1);font-size:48px}
+h2.projects{color:var(--heading2)}
+h2.contact{color:var(--heading3)}
 button{
-  background:var(--accent);
-  color:#020617;
-  border:none;
-  padding:10px 18px;
+  margin:6px;
+  padding:10px 20px;
   border-radius:6px;
+  border:none;
   font-weight:bold;
+  background:var(--accent);
   cursor:pointer;
 }
-button:hover{opacity:.9;transform:scale(1.05)}
+button:hover{transform:scale(1.05)}
 .project-card{
   background:var(--card);
-  padding:20px;
-  border-radius:12px;
-  margin-bottom:20px;
-  box-shadow:0 8px 20px rgba(56,189,248,.2);
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:15px;
 }
 footer{
   background:#020617;
   padding:20px;
   text-align:center;
-  margin-top:auto;
 }
-footer a{color:white;font-size:24px;margin:0 10px}
+footer a{color:white;font-size:22px;margin:0 10px}
 footer a:hover{color:var(--accent)}
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(20px)}
@@ -89,11 +87,13 @@ footer a:hover{color:var(--accent)}
 <body>
 
 <nav>
-  <a onclick="show('home')">Home</a>
-  <a onclick="show('about')">About</a>
-  <a onclick="show('projects')">Projects</a>
-  <a onclick="show('contact')">Contact</a>
+  <a onclick="showSection('home')">Home</a>
+  <a onclick="showSection('about')">About</a>
+  <a onclick="showSection('projects')">Projects</a>
+  <a onclick="showSection('contact')">Contact</a>
 </nav>
+
+<main>
 
 <!-- HOME -->
 <section id="home" class="active">
@@ -101,93 +101,35 @@ footer a:hover{color:var(--accent)}
   <h1>Nikkita Anna George</h1>
   <h2 id="typing" style="color:var(--accent);min-height:30px"></h2>
   <p style="max-width:600px">
-    Aspiring <b>UI/UX Designer</b> & <b>Frontend Developer</b> passionate about creating
+    Aspiring <b>UI/UX Designer</b> and <b>Frontend Developer</b> passionate about crafting
     beautiful, functional digital experiences.
   </p>
   <br>
-  <button onclick="show('projects')">View My Work</button>
-  <button onclick="show('contact')">Get In Touch</button>
+  <button onclick="showSection('projects')">View My Work</button>
+  <button onclick="showSection('contact')">Get In Touch</button>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <h1 style="color:var(--h2)">About Me</h1>
+  <h1 style="color:var(--heading2)">About Me</h1>
   <p>
-    I am a passionate UI/UX Designer and Frontend Developer skilled in
-    <b>HTML, CSS & JavaScript</b>. I love turning ideas into intuitive,
-    user-friendly designs.
+    Passionate UI/UX Designer & Frontend Developer skilled in
+    <b>HTML, CSS & JavaScript</b>.
   </p>
   <br>
-  <h3 style="color:var(--accent)">Education</h3>
   <p><b>B.Tech</b> – St. Joseph’s College of Engineering, Choondachery</p>
   <p><b>Higher Secondary</b> – St. Joseph’s HSS Vilakumadom</p>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <h2 style="color:var(--h2)">Projects & Achievements</h2>
-
-  <div class="project-card">
-    <h3>Mulearn 30-Day Coding Challenge</h3>
-    <p>Completed an intensive month-long coding challenge.</p>
-    <a href="https://media.licdn.com/dms/image/v2/D4E22AQGivs9LUn_DyA/feedshare-shrink_1280/B4EZfehelwHwAo-/0/1751785009448" target="_blank">
-      <button>View Certificate</button>
-    </a>
-    <a href="https://media.licdn.com/dms/image/v2/D4E22AQEHMOp3wunUuQ/feedshare-shrink_1280/B4EZfehemGHwAo-/0/1751785009011" target="_blank">
-      <button>View Post</button>
-    </a>
-  </div>
-
-  <div class="project-card">
-    <h3>Insendium Participation</h3>
-    <p>Startup bootcamp & innovation program participation.</p>
-    <a href="https://www.linkedin.com/posts/nikkita-anna-george-a39807327_startupbootcamp-iedc-innovation-activity-7359600386573258752" target="_blank">
-      <button>View Post</button>
-    </a>
-    <a href="https://www.linkedin.com/posts/startup-bootcamp-sjcet_glimpses-of-insendium-100-ugcPost-7362372926597181440" target="_blank">
-      <button>View Highlights</button>
-    </a>
-  </div>
-
-  <div class="project-card">
-    <h3>IEEE Events</h3>
-    <p>Attended IEEE technical workshops and seminars.</p>
-    <a href="https://media.licdn.com/dms/image/v2/D4E22AQFrlXlpH1bWcQ/feedshare-shrink_1280/B4EZi4i4h6HIAk-/0/1755442824437" target="_blank">
-      <button>View Certificate</button>
-    </a>
-  </div>
-
-  <div class="project-card">
-    <h3>24-Hour National Hackathon</h3>
-    <p>National-level hackathon participation.</p>
-    <a href="https://media.licdn.com/dms/image/v2/D4E22AQHvvk-OoblVOg/feedshare-shrink_800/B4EZmV69UvGcAg-/0/1759156886615" target="_blank">
-      <button>View Certificate</button>
-    </a>
-    <a href="https://www.linkedin.com/posts/nikkita-anna-george-a39807327_hackathon-teamwork-innovation-activity-7378438813267955712" target="_blank">
-      <button>View Post</button>
-    </a>
-  </div>
-
-  <div class="project-card">
-    <h3>Java Project – Canteen Kiosk</h3>
-    <p>Java-based kiosk system for canteen management.</p>
-    <a href="https://github.com/NikkitaAnnaGeorge/Java-Project---Canteen-Kiosk" target="_blank">
-      <button>View GitHub</button>
-    </a>
-  </div>
-
-  <div class="project-card">
-    <h3>SJCET URL Shortener</h3>
-    <p>Web-based URL shortening application.</p>
-    <a href="https://github.com/NikkitaAnnaGeorge/Sjcet-Url-Shortner" target="_blank">
-      <button>View GitHub</button>
-    </a>
-  </div>
+  <h2 class="projects">Projects & Experience</h2>
+  <div id="projectList"></div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <h2 style="color:var(--h3)">Keep in Touch</h2>
+  <h2 class="contact">Keep in Touch</h2>
   <form>
     <input required placeholder="Name" style="width:100%;padding:10px;margin-bottom:10px">
     <input required placeholder="Email" style="width:100%;padding:10px;margin-bottom:10px">
@@ -196,29 +138,95 @@ footer a:hover{color:var(--accent)}
   </form>
 </section>
 
+</main>
+
 <footer>
   <p>© 2025 Nikkita Anna George</p>
-  <br>
   <a href="https://github.com/NikkitaAnnaGeorge" target="_blank"><i class="fab fa-github"></i></a>
   <a href="https://linkedin.com/in/nikkita-anna-george-a39807327" target="_blank"><i class="fab fa-linkedin"></i></a>
   <a href="mailto:youremail@example.com"><i class="fas fa-envelope"></i></a>
 </footer>
 
 <script>
-function show(id){
+// section switch
+function showSection(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
 
-const text=["Aspiring UI/UX Designer","Frontend Developer","Creative Problem Solver"];
+// typing effect
+const texts=["Aspiring UI/UX Designer","Frontend Developer","Problem Solver"];
 let i=0,j=0,del=false;
 const el=document.getElementById("typing");
 (function type(){
-  el.textContent=text[i].slice(0,j);
-  if(!del){j++; if(j===text[i].length){del=true}}
-  else{j--; if(j===0){del=false;i=(i+1)%text.length}}
+  el.textContent=texts[i].slice(0,j);
+  if(!del){j++;if(j===texts[i].length)del=true}
+  else{j--;if(j===0){del=false;i=(i+1)%texts.length}}
   setTimeout(type,del?60:120);
 })();
+
+// PROJECT DATA (LINKS ONLY)
+const projects=[
+{
+ title:"Mulearn 30-Day Coding Challenge",
+ desc:"Completed an intensive month-long coding challenge.",
+ links:[
+  {label:"View Certificate",url:"https://media.licdn.com/dms/image/v2/D4E22AQGivs9LUn_DyA/feedshare-shrink_1280/B4EZfehelwHwAo-/0/1751785009448?e=1767225600&v=beta&t=GR7BL0EYxySD_-TROBKfEDuzY027tXI3A1ER7ZTKM3I"},
+  {label:"View Post",url:"https://www.linkedin.com/posts/nikkita-anna-george-a39807327_internshipexperience-thenexusproject-sjcetpalai-activity-7347518878387757056-LNyX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFMe91YBaioU4eARrXqW7MaGPPTRBqQMl0E"}
+ ]
+},
+{
+ title:"Insendium Participation",
+ desc:"Startup bootcamp & innovation program participation.",
+ links:[
+  {label:"View Post",url:"https://www.linkedin.com/posts/nikkita-anna-george-a39807327_startupbootcamp-iedc-innovation-activity-7359600386573258752-nQLt?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFMe91YBaioU4eARrXqW7MaGPPTRBqQMl0E"}
+ ]
+},
+{
+ title:"IEEE Events",
+ desc:"Attended IEEE technical workshops and seminars.",
+ links:[
+  {label:"View Certificate",url:"https://media.licdn.com/dms/image/v2/D4E22AQFrlXlpH1bWcQ/feedshare-shrink_1280/B4EZi4i4h6HIAk-/0/1755442824437?e=1767225600&v=beta&t=gwBGNCcXFR5vibUC0xDFgpkjteUYWORKp83purWe7Yo"}
+ ]
+},
+{
+ title:"24-Hour National Hackathon",
+ desc:"National-level hackathon participation.",
+ links:[
+  {label:"View Certificate",url:"https://media.licdn.com/dms/image/v2/D4E22AQHvvk-OoblVOg/feedshare-shrink_800/B4EZmV69UvGcAg-/0/1759156886615?e=1767225600&v=beta&t=NOZWn753vpDmSoinDZs2gh1rQYFlCB0ymVrnwzwfTMA"},
+  {label:"View Post",url:"https://www.linkedin.com/posts/nikkita-anna-george-a39807327_hackathon-teamwork-innovation-activity-7378438813267955712-SlUR?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFMe91YBaioU4eARrXqW7MaGPPTRBqQMl0E"}
+ ]
+},
+{
+ title:"Java Project – Canteen Kiosk",
+ desc:"Java-based kiosk system for canteen management.",
+ links:[
+  {label:"View GitHub",url:"https://github.com/NikkitaAnnaGeorge/Java-Project---Canteen-Kiosk"}
+ ]
+},
+{
+ title:"SJCET URL Shortener",
+ desc:"Web-based URL shortening application.",
+ links:[
+  {label:"View GitHub",url:"https://github.com/NikkitaAnnaGeorge/Sjcet-Url-Shortner"}
+ ]
+}
+];
+
+// render cards
+const projectList=document.getElementById("projectList");
+projects.forEach(p=>{
+ let btns="";
+ p.links.forEach(l=>{
+  btns+=`<a href="${l.url}" target="_blank"><button>${l.label}</button></a>`;
+ });
+ projectList.innerHTML+=`
+  <div class="project-card">
+    <h3>${p.title}</h3>
+    <p>${p.desc}</p>
+    <div>${btns}</div>
+  </div>`;
+});
 </script>
 
 </body>
