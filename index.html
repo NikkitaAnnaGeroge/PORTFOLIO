@@ -316,8 +316,8 @@ projects.forEach(p => {
     <h3>${p.title}</h3>
     <p>${p.desc}</p>
     <div style="margin-top:10px;">
-      ${p.certificate ? <a href="${p.certificate}" target="_blank"><button>View Certificate</button></a> : ""}
-      ${p.github ? <a href="${p.github}" target="_blank"><button>View GitHub</button></a> : ""}
+      ${p.certificate ? `<a href="${p.certificate}" target="_blank"><button>View Certificate</button></a>` : ""}
+      ${p.github ? `<a href="${p.github}" target="_blank"><button>View GitHub</button></a>` : ""}
     </div>
   `;
   projectList.appendChild(card);
