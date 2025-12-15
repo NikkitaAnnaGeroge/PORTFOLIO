@@ -1,335 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Nikkita Anna George | Portfolio</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
 <style>
-:root {
-  --bg: #0f172a;
-  --card: #1e293b;
-  --text: #e5e7eb;
-  --accent: #38bdf8;
-  --heading1: #a78bfa;
-  --heading2: #22d3ee;
-  --heading3: #a855f7; /* purple for contact */
+:root{
+  --bg:#0f172a;
+  --card:#1e293b;
+  --text:#e5e7eb;
+  --accent:#38bdf8;
+  --h1:#a78bfa;
+  --h2:#22d3ee;
+  --h3:#a855f7;
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
-  line-height: 1.5;
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
-
-main {
-  flex: 1; /* push footer down if content is short */
+nav{
+  background:#020617;
+  padding:12px;
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  position:sticky;
+  top:0;
+  z-index:100;
 }
-
-nav {
-  background: #020617;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+nav a{
+  color:var(--accent);
+  font-weight:bold;
+  cursor:pointer;
+  text-decoration:none;
 }
-
-nav a {
-  color: var(--accent);
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
+nav a:hover{color:var(--h1)}
+section{
+  display:none;
+  max-width:1100px;
+  margin:auto;
+  padding:60px 25px;
+  animation:fadeUp .5s ease;
 }
-
-nav a:hover {
-  color: var(--heading1);
+section.active{display:block}
+h1{font-size:46px;color:var(--h1)}
+h2{font-size:28px;margin-bottom:15px}
+p{line-height:1.6;font-size:16px}
+button{
+  background:var(--accent);
+  color:#020617;
+  border:none;
+  padding:10px 18px;
+  border-radius:6px;
+  font-weight:bold;
+  cursor:pointer;
 }
-
-section {
-  display: none;
-  padding: 60px 40px;
-  max-width: 1000px;
-  margin: auto;
-  animation: fadeUp 0.5s ease;
-  position: relative;
+button:hover{opacity:.9;transform:scale(1.05)}
+.project-card{
+  background:var(--card);
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:20px;
+  box-shadow:0 8px 20px rgba(56,189,248,.2);
 }
-
-section.active { display: block; }
-
-h1,h2 { margin-bottom: 15px; }
-h1 { color: var(--heading1); font-size: 48px; }
-h2.hero { color: var(--heading1); font-size: 32px; }
-h2.about { color: var(--heading2); font-size: 28px; }
-h2.projects { color: var(--heading2); font-size: 28px; }
-h2.contact { color: var(--heading3); font-size: 28px; }
-
-p { font-size: 16px; line-height:1.5; }
-
-button {
-  margin: 8px;
-  padding: 10px 20px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
-  background: var(--accent);
-  color: #020617;
-  transition: 0.3s;
+footer{
+  background:#020617;
+  padding:20px;
+  text-align:center;
+  margin-top:auto;
 }
-
-button:hover { transform: scale(1.05); opacity: 0.9; }
-
-.project-card {
-  background: var(--card);
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  cursor: pointer;
-  transition: 0.3s;
+footer a{color:white;font-size:24px;margin:0 10px}
+footer a:hover{color:var(--accent)}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
 }
-
-.project-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(56,189,248,0.3);
-}
-
-.modal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.7);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: var(--card);
-  padding: 25px;
-  border-radius: 10px;
-  max-width: 450px;
-  animation: fadeUp 0.4s ease;
-}
-
-.close { float: right; cursor: pointer; font-size: 20px; }
-
-.contact-form {
-  background: var(--card);
-  padding: 25px;
-  border-radius: 10px;
-  max-width: 600px;
-  margin: auto;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  border: none;
-  border-radius: 6px;
-  background: #020617;
-  color: white;
-  font-size: 14px;
-}
-
-.contact-form button {
-  width: 100%;
-  padding: 12px;
-  background: var(--accent);
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-footer {
-  background: #020617;
-  color: var(--text);
-  padding: 20px 40px;
-  text-align: center;
-  border-top: 1px solid #333;
-  margin-top: auto;
-}
-
-footer a { color: var(--text); font-size: 24px; transition: 0.3s; }
-footer a:hover { color: var(--accent); }
-
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes bgMove { 0% {background-position:0% 50%;} 50% {background-position:100% 50%;} 100% {background-position:0% 50%;} }
-
-@media(max-width:900px){ section{padding:40px 20px;} .project-card{width:100%;} }
 </style>
 </head>
+
 <body>
 
 <nav>
-  <a onclick="showSection('home')">Home</a>
-  <a onclick="showSection('about')">About</a>
-  <a onclick="showSection('projects')">Projects</a>
-  <a onclick="showSection('contact')">Contact</a>
+  <a onclick="show('home')">Home</a>
+  <a onclick="show('about')">About</a>
+  <a onclick="show('projects')">Projects</a>
+  <a onclick="show('contact')">Contact</a>
 </nav>
 
-<main>
-<!-- Home -->
-<section id="home" class="active" style="position: relative; overflow:hidden;">
-  <h2 style="color:var(--accent); font-size:24px; margin-bottom:10px;">Hi, I am</h2>
-  <h1 style="color:var(--heading1); font-size:48px; margin-bottom:20px;">Nikkita Anna George</h1>
-  <h2 id="typing" style="color:var(--accent); font-size:22px; min-height:30px; margin-bottom:20px;"></h2>
-  <p style="max-width:600px; font-size:16px; line-height:1.6;">
-    Aspiring <strong>UI/UX Designer</strong> and <strong>Frontend Developer</strong> passionate about crafting beautiful, functional digital experiences. I love problem-solving, building responsive applications, and creating designs that users love.
+<!-- HOME -->
+<section id="home" class="active">
+  <h2 style="color:var(--accent)">Hi, I am</h2>
+  <h1>Nikkita Anna George</h1>
+  <h2 id="typing" style="color:var(--accent);min-height:30px"></h2>
+  <p style="max-width:600px">
+    Aspiring <b>UI/UX Designer</b> & <b>Frontend Developer</b> passionate about creating
+    beautiful, functional digital experiences.
   </p>
-  <div style="margin-top:20px;">
-    <button onclick="showSection('projects')">View My Work</button>
-    <button onclick="showSection('contact')">Get In Touch</button>
-  </div>
-  <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:linear-gradient(120deg,#0f172a,#1e293b,#0f172a); animation:bgMove 15s linear infinite; z-index:-1;"></div>
+  <br>
+  <button onclick="show('projects')">View My Work</button>
+  <button onclick="show('contact')">Get In Touch</button>
 </section>
 
-<!-- About -->
+<!-- ABOUT -->
 <section id="about">
-  <h1 style="color:var(--heading2); font-size:48px; margin-bottom:40px; text-align:left;">About Me</h1>
-  <div style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
-    <div style="background: linear-gradient(145deg, #1e293b, #0f172a); padding:30px; border-radius:15px; flex:1; min-width:350px; box-shadow:0 8px 20px rgba(56,189,248,0.3); animation:fadeUp 0.6s ease;">
-      <h3 style="color:var(--accent); font-size:22px; margin-bottom:15px;">Who I Am</h3>
-      <p style="font-size:16px; line-height:1.6;">
-        I am a passionate <strong>UI/UX Designer</strong> and <strong>Frontend Developer</strong> with a keen eye for creating visually appealing and user-friendly interfaces. Skilled in <strong>JavaScript, HTML, and CSS</strong>, I specialize in transforming ideas into seamless digital experiences.
-      </p>
-      <p style="font-size:16px; line-height:1.6; margin-top:10px;">
-        Beyond technology, I love <strong>traveling, reading, and dancing</strong>. These hobbies fuel my creativity and inspire me to approach challenges with fresh perspectives.
-      </p>
-    </div>
-    <div style="flex:1; min-width:350px; display:flex; flex-direction:column; gap:20px;">
-      <div style="background:var(--card); padding:20px; border-radius:15px; box-shadow:0 8px 15px rgba(56,189,248,0.2); animation:fadeUp 0.8s ease;">
-        <h3 style="color:var(--accent); font-size:20px; margin-bottom:10px; text-align:left;">Skills & Strengths</h3>
-        <ul style="list-style:disc; padding-left:20px;">
-          <li>UI/UX Design & Prototyping</li>
-          <li>JavaScript, HTML, CSS</li>
-          <li>Problem-Solving & Algorithms</li>
-          <li>Project Management & Collaboration</li>
-          <li>Hackathons & Coding Challenges</li>
-        </ul>
-      </div>
-      <div style="background:var(--card); padding:20px; border-radius:15px; box-shadow:0 8px 15px rgba(56,189,248,0.2); animation:fadeUp 1s ease;">
-        <h3 style="color:var(--accent); font-size:20px; margin-bottom:10px; text-align:left;">Education</h3>
-        <p><strong>Higher Secondary Education:</strong> St. Joseph's HSS Vilakumadom</p>
-        <p>Focused on Maths, Physics, and Problem-Solving</p>
-        <p><strong>B.Tech:</strong> St. Joseph's College of Engineering, Choondachery</p>
-      </div>
-    </div>
-  </div>
-  <div style="margin-top:30px;">
-    <button onclick="showSection('projects')">View My Projects</button>
-  </div>
+  <h1 style="color:var(--h2)">About Me</h1>
+  <p>
+    I am a passionate UI/UX Designer and Frontend Developer skilled in
+    <b>HTML, CSS & JavaScript</b>. I love turning ideas into intuitive,
+    user-friendly designs.
+  </p>
+  <br>
+  <h3 style="color:var(--accent)">Education</h3>
+  <p><b>B.Tech</b> – St. Joseph’s College of Engineering, Choondachery</p>
+  <p><b>Higher Secondary</b> – St. Joseph’s HSS Vilakumadom</p>
 </section>
 
-<!-- Projects -->
+<!-- PROJECTS -->
 <section id="projects">
-  <h2 class="projects">Projects & Experience</h2>
-  <div id="projectList"></div>
+  <h2 style="color:var(--h2)">Projects & Certificates</h2>
+
+  <div class="project-card">
+    <h3>Mulearn 30-Day Coding Challenge</h3>
+    <p>Completed intensive month-long coding challenge.</p>
+    <a href="certificates/Coding.pdf" target="_blank" rel="noopener">
+      <button>View Certificate</button>
+    </a>
+  </div>
+
+  <div class="project-card">
+    <h3>Insendium Participation</h3>
+    <p>Participated in events and community initiatives.</p>
+    <a href="certificates/Insendium.pdf" target="_blank" rel="noopener">
+      <button>View Certificate</button>
+    </a>
+  </div>
+
+  <div class="project-card">
+    <h3>IEEE Events</h3>
+    <p>Attended workshops and tech seminars.</p>
+    <a href="certificates/IEEE.pdf" target="_blank" rel="noopener">
+      <button>View Certificate</button>
+    </a>
+  </div>
+
+  <div class="project-card">
+    <h3>24-Hour National Hackathon</h3>
+    <p>National-level hackathon at Mar Baselios College.</p>
+    <a href="certificates/Hackathon.pdf" target="_blank" rel="noopener">
+      <button>View Certificate</button>
+    </a>
+  </div>
+
+  <div class="project-card">
+    <h3>Java Project – Canteen Kiosk</h3>
+    <p>Java-based kiosk system for canteen management.</p>
+    <a href="https://github.com/NikkitaAnnaGeorge/Java-Project---Canteen-Kiosk" target="_blank">
+      <button>View GitHub</button>
+    </a>
+  </div>
+
+  <div class="project-card">
+    <h3>SJCET URL Shortener</h3>
+    <p>Web-based URL shortener project.</p>
+    <a href="https://github.com/NikkitaAnnaGeorge/Sjcet-Url-Shortner" target="_blank">
+      <button>View GitHub</button>
+    </a>
+  </div>
 </section>
 
-<!-- Contact -->
+<!-- CONTACT -->
 <section id="contact">
-  <h2 class="contact">Keep in Touch</h2>
-  <form class="contact-form">
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <input type="text" placeholder="Subject" required>
-    <textarea placeholder="Message" required></textarea>
-    <button>Send Message</button>
+  <h2 style="color:var(--h3)">Keep in Touch</h2>
+  <form>
+    <input required placeholder="Name" style="width:100%;padding:10px;margin-bottom:10px">
+    <input required placeholder="Email" style="width:100%;padding:10px;margin-bottom:10px">
+    <textarea required placeholder="Message" style="width:100%;padding:10px;margin-bottom:10px"></textarea>
+    <button type="submit">Send Message</button>
   </form>
 </section>
-</main>
 
-<!-- Modal -->
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">✖</span>
-    <h3 id="modalTitle"></h3>
-    <p id="modalDesc"></p>
-  </div>
-</div>
-
-<!-- Footer -->
 <footer>
-  <p>© 2025 All rights reserved</p>
-  <div style="margin-top:10px; display:flex; justify-content:center; gap:20px;">
-    <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
-    <a href="mailto:youremail@example.com"><i class="fas fa-envelope"></i></a>
-  </div>
+  <p>© 2025 Nikkita Anna George</p>
+  <br>
+  <a href="https://github.com/NikkitaAnnaGeorge" target="_blank"><i class="fab fa-github"></i></a>
+  <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+  <a href="mailto:youremail@example.com"><i class="fas fa-envelope"></i></a>
 </footer>
 
 <script>
-// Section Switch
-function showSection(sectionId){
-  document.querySelectorAll('section').forEach(sec=>sec.classList.remove('active'));
-  document.getElementById(sectionId).classList.add('active');
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
-// Typing effect on Home
-const phrases = ["Aspiring UI/UX Designer", "Frontend Developer", "Problem Solver & Innovator"];
-let i = 0, currentPhrase = "", isDeleting = false;
-const typingElement = document.getElementById('typing');
-function type(){
-  let fullText = phrases[i];
-  if(isDeleting){ currentPhrase = fullText.substring(0, currentPhrase.length-1);}
-  else{ currentPhrase = fullText.substring(0, currentPhrase.length+1);}
-  typingElement.textContent = currentPhrase;
-  let speed = isDeleting ? 50 : 150;
-  if(!isDeleting && currentPhrase===fullText){ speed=1000; isDeleting=true;}
-  else if(isDeleting && currentPhrase===''){ isDeleting=false; i++; if(i>=phrases.length)i=0; speed=500;}
-  setTimeout(type,speed);
-}
-type();
-
-// Projects Data
-const projects = [
-  { title:"Mulearn 30-Day Coding Challenge", desc:"Completed an intensive month-long coding challenge to enhance coding skills and problem-solving abilities.", certificate:"certificates/Coding.pdf" },
-  { title:"Insendium Participation", desc:"Actively took part in events and initiatives, contributing to community projects and learning experiences.", certificate:"certificates/Insendium.pdf" },
-  { title:"IEEE Events", desc:"Attended workshops and seminars to gain insights into the latest technological trends and innovations.", certificate:"certificates/IEEE.pdf" },
-  { title:"Java Project – Canteen Kiosk", desc:"Developed a Java-based kiosk system to streamline canteen operations, including order management and billing.", github:"https://github.com/NikkitaAnnaGeroge/Java-Project---Canteen-Kiosk- " },
-  { title:"24-Hour National Hackathon", desc:"Competed in a national-level hackathon at Mar Baselios College of Engineering, developing creative solutions under time constraints.", certificate:"certificates/Hackathon.pdf" },
-  { title:"SJCET URL Shortener", desc:"Developed a URL shortening tool as a project to simplify long links, using modern web technologies.", github:"https://github.com/NikkitaAnnaGeroge/Sjcet-Url-Shortner" }
-];
-
-// Render Project Cards
-const projectList = document.getElementById("projectList");
-projects.forEach(p => {
-  const card = document.createElement("div");
-  card.className = "project-card";
-  card.innerHTML = `
-    <h3>${p.title}</h3>
-    <p>${p.desc}</p>
-    <div style="margin-top:10px;">
-      ${p.certificate ? `<a href="${p.certificate}" target="_blank"><button>View Certificate</button></a>` : ""}
-      ${p.github ? `<a href="${p.github}" target="_blank"><button>View GitHub</button></a>` : ""}
-    </div>
-  `;
-  projectList.appendChild(card);
-});
-
-// Modal Functions
-function openModal(project){
-  document.getElementById("modalTitle").innerText = project.title;
-  document.getElementById("modalDesc").innerText = project.desc;
-  document.getElementById("modal").style.display = "flex";
-}
-function closeModal(){ document.getElementById("modal").style.display = "none"; }
+const text=["Aspiring UI/UX Designer","Frontend Developer","Creative Problem Solver"];
+let i=0,j=0,del=false;
+const el=document.getElementById("typing");
+(function type(){
+  el.textContent=text[i].slice(0,j);
+  if(!del){j++; if(j===text[i].length){del=true}}
+  else{j--; if(j===0){del=false;i=(i+1)%text.length}}
+  setTimeout(type,del?60:120);
+})();
 </script>
 
 </body>
