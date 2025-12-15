@@ -299,11 +299,12 @@ type();
 
 // Projects Data
 const projects = [
-  { title:"Mulearn 30-Day Coding Challenge", desc:"Completed an intensive month-long coding challenge to enhance coding skills and problem-solving abilities." },
-  { title:"Insendium Participation", desc:"Actively took part in events and initiatives, contributing to community projects and learning experiences." },
-  { title:"IEEE Events", desc:"Attended workshops and seminars to gain insights into the latest technological trends and innovations." },
-  { title:"Java Project – Canteen Kiosk", desc:"Developed a Java-based kiosk system to streamline canteen operations, including order management and billing." },
-  { title:"24-Hour National Hackathon", desc:"Competed in a national-level hackathon at Mar Baselios College of Engineering, developing creative solutions under time constraints." }
+  { title:"Mulearn 30-Day Coding Challenge", desc:"Completed an intensive month-long coding challenge to enhance coding skills and problem-solving abilities.", certificate:"certificates/coding.pdf" },
+  { title:"Insendium Participation", desc:"Actively took part in events and initiatives, contributing to community projects and learning experiences.", certificate:"certificates/insendium.pdf" },
+  { title:"IEEE Events", desc:"Attended workshops and seminars to gain insights into the latest technological trends and innovations.", certificate:"certificates/ieee.pdf" },
+  { title:"Java Project – Canteen Kiosk", desc:"Developed a Java-based kiosk system to streamline canteen operations, including order management and billing.", github:"https://github.com/NikkitaAnnaGeroge/Java-Project---Canteen-Kiosk- " },
+  { title:"24-Hour National Hackathon", desc:"Competed in a national-level hackathon at Mar Baselios College of Engineering, developing creative solutions under time constraints.", certificate:"certificates/hackathon.pdf" },
+  { title:"SJCET URL Shortener", desc:"Developed a URL shortening tool as a project to simplify long links, using modern web technologies.", github:"https://github.com/NikkitaAnnaGeroge/Sjcet-Url-Shortner" }
 ];
 
 // Render Project Cards
@@ -311,8 +312,14 @@ const projectList = document.getElementById("projectList");
 projects.forEach(p => {
   const card = document.createElement("div");
   card.className = "project-card";
-  card.innerHTML = `<h3>${p.title}</h3><p>Click to view details</p>`;
-  card.onclick = () => openModal(p);
+  card.innerHTML = `
+    <h3>${p.title}</h3>
+    <p>${p.desc}</p>
+    <div style="margin-top:10px;">
+      ${p.certificate ? <a href="${p.certificate}" target="_blank"><button>View Certificate</button></a> : ""}
+      ${p.github ? <a href="${p.github}" target="_blank"><button>View GitHub</button></a> : ""}
+    </div>
+  `;
   projectList.appendChild(card);
 });
 
